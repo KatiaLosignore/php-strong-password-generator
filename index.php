@@ -4,6 +4,10 @@ require __DIR__ . '/functions.php';
 
 if(isset($_GET['length'])) {
     $element = getPassword($_GET['length']);
+
+    if ($element === true)
+     header('Location: ./success.php');
+
 }
 
 ?>
@@ -32,8 +36,8 @@ if(isset($_GET['length'])) {
 
             <?php if (isset($element)) { ?>
                 <div class="col-12">
-                    <div class="alert alert-success" role="alert">
-                   La tua password è : <strong><?php echo $element ?></strong>
+                    <div class="alert alert-danger" role="alert">
+                       <strong><?php echo $element ?></strong>
                    </div>
                 </div>
             <?php } ?>

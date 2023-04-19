@@ -4,6 +4,7 @@
 
 function getPassword($length) {
 
+
     $letters = 'abcdefghijklmnopqrstuvwyz';
     $numbers = '0123456789';
     $simbols = '+-*/@[]{}#_=$?!%';
@@ -11,6 +12,9 @@ function getPassword($length) {
     $string = $letters. strtoupper($letters). $numbers. $simbols;
     
     $total_string = mb_strlen($string);
+
+    if (empty($length)) return 'Attenzione non è stata inserita la lunghezza della password!';
+    
     
     $password = '';
 
@@ -23,5 +27,8 @@ function getPassword($length) {
         $password.= $random_string;
     }
 
-    return $password;
+    session_start();
+    $_SESSION['password'] = $password;
+
+    return true;
 }
